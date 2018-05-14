@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void obtainToken() {
-        new Thread(new Runnable() {
+        final Thread tokenReceive=new Thread(new Runnable() {
             @Override
             public void run() {
                 String token = FirebaseInstanceId.getInstance().getToken();
@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
                     tokenText.setText(token);
                 }
             }
-        }).run();
+        });
+        tokenReceive.run();
     }
+
 }
